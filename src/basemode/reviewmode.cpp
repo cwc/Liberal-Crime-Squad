@@ -952,12 +952,17 @@ void assemblesquad(squadst *cursquad)
       addstr(" T to sort people.");
 		move(23,50);
       addstr("V - View a Liberal");
-      move(24,0);
+      move(24,40);
+      if(cursquad->squad[0]!=NULL)
+      {
+	  addstr("8 - Rename the squad");
+      move(25,0);
+      }
       if(partysize>0) addstr("Enter - The squad is ready.");
       else addstr("Enter - I need no squad!");
       if(partysize>0) set_color(COLOR_WHITE,COLOR_BLACK,0);
       else set_color(COLOR_BLACK,COLOR_BLACK,1);
-      move(24,40);
+      move(25,40);
       addstr("9 - Dissolve the squad.");
 
       int c=getkey();
@@ -1111,6 +1116,17 @@ void assemblesquad(squadst *cursquad)
                cursquad->squad[p]=NULL;
             }
          }
+      }
+	  if(c=='8')
+      {
+         move(22,0);
+         addstr("                                                                                "); // 80 spaces
+         move(23,0);
+         addstr("What shall we designate this Liberal squad?                                     "); // 80 characters
+         move(24,0);
+         addstr("                                                                                "); // 80 spaces
+
+         enter_name(24,0,cursquad->name,SQUAD_NAMELEN,"The Liberal Crime Squad");
       }
    }
 
